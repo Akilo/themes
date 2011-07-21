@@ -1,0 +1,23 @@
+[(#REM) Inscription au site ]
+#FORMULAIRE_INSCRIPTION
+
+[(#REM) Liens des forums ]
+
+<div class="liste forums">
+	<h2 class="titre_tete">L'AGENDA NATIONAL <a onclick="switchMenu('agenda_nat');" href="#"><img src="#CHEMIN{images/Picto.png}" /></a><span style="display:none" id="agenda_nat">#FORMULAIRE_CLEVERMAIL{2,html,box}</span></h2>
+	<ul class="liste-items">
+		<li class="item"><time>Jeudi 15/06/2011</time><a href="#" title="ce que l'on veut"]>Mon titre dans la l'agenda</a></li>
+		<li class="item"><time>Jeudi 15/06/2011</time><a href="#" title="ce que l'on veut"]>Mon titre dans la l'agenda</a></li>
+		<li class="item"><time>Jeudi 15/06/2011</time><a href="#" title="ce que l'on veut"]>Mon titre dans la l'agenda</a></li>
+		<li class="item"><time>Jeudi 15/06/2011</time><a href="#" title="ce que l'on veut"]>Mon titre dans la l'agenda</a></li>
+		
+	</ul>
+</div>
+
+
+
+[(#REM) Sur le Web ]
+<div class="liste mots">
+	<h2 class="titre_tete">MOTS CLES</h2>
+	[(#MODELE{nuage_popularite}{notid=1})]
+</div>

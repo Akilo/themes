@@ -1,0 +1,33 @@
+
+<BOUCLE_menu(MENUS){id_menu?}{identifiant?}>
+	
+	<B_entrees>
+	<ul class="menu-liste[ (#CSS)]">
+		<BOUCLE_entrees(MENUS_ENTREES){id_menu}{par rang}>
+		#MENUS_AFFICHER_ENTREE
+			<BOUCLE_sous_menu(MENUS){id_menus_entree}>
+				#INCLURE{fond=inclure/menu, env, id_menu, identifiant}
+			</BOUCLE_sous_menu>
+		[(#REM)
+			On ferme le li si le type d'entrée accepte des sous-menus
+			et si on a bien quelque chose dans le li (cas des menus sur #SESSION)
+		][(#TYPE_ENTREE|menus_type_refuser_sous_menu|non)
+			[(#MENUS_AFFICHER_ENTREE|trim|oui)</li>]
+		]
+		</BOUCLE_entrees>
+	</ul>
+	</B_entrees>
+	
+</BOUCLE_menu>
+<ul id="menu_haut">
+	<li class="menu_haut"><a href="#URL_SITE_SPIP">Accueil</a></li>
+	<li class="menu_haut"><a href="#URL_PAGE{espace-national}">Espace national</a></li>
+	<li class="menu_haut"><a href="#URL_RUBRIQUE{37}">Ma d&eacute;l&eacute;gation</a></li>
+	<li class="menu_haut"><a href="#">Espace salari&eacute;</a></li>
+	<li class="menu_haut"><a href="#URL_PAGE{intranet}">Boite &agrave; id&eacute;es</a></li>
+	<li class="menu_haut"><a href="#URL_PAGE{menu_self}">Menu du self</a></li>
+</ul>
+<ul id="connect">
+	<li class="black"><a onclick="switchMenu('myspace');" href="#">Mon espace</a></li>
+	<li class="black"><a href="#">Déconnexion</a></li>
+</ul>

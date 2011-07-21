@@ -1,0 +1,82 @@
+<BOUCLE_contenu_rubrique(RUBRIQUES){id_rubrique}>
+[(#REM) Fil d'Ariane ]
+
+<div class="contenu-principal">
+
+	<div class="cartouche">#FORMULAIRE_FAVORI
+		[(#LOGO_RUBRIQUE||image_reduire{200,200})]
+		<h2 class="titre_tete#ID_SECTEUR #EDIT{titre}">#TITRE</h2>
+		
+	</div>
+
+	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+</div>
+<BOUCLE_nous_connaitre(ARTICLES){id_rubrique}{titre_mot=nous_connaitre}>
+<div id="nous_connaitre" class="theme">
+	<h2 class="titre_connaitre couleur_#ID_SECTEUR">#TITRE</h2>
+	#CHAPO
+	#TEXTE
+</div>
+</BOUCLE_nous_connaitre>
+
+<div id="agenda_portail">
+	<h2 class="titre_connaitre_off couleur_#ID_SECTEUR">L'agenda</h2>
+	<dl>
+		<dt><time>Jeudi 15/06/2011</time></dt>
+		<dd>dolor aliquet cursus tempus</dd>
+		<dt><time>Jeudi 15/06/2011</time></dt>
+		<dd>dolor aliquet cursus tempus</dd>
+		<dt><time>Jeudi 15/06/2011</time></dt>
+		<dd>dolor aliquet cursus tempus</dd>
+		<dt><time>Jeudi 15/06/2011</time></dt>
+		<dd>dolor aliquet cursus tempus</dd>
+		<dt><time>Jeudi 15/06/2011</time></dt>
+		<dd>dolor aliquet cursus tempus</dd>
+		<dt><time>Jeudi 15/06/2011</time></dt>
+		<dd>dolor aliquet cursus tempus</dd>
+		<dt><time>Jeudi 15/06/2011</time></dt>
+		<dd>dolor aliquet cursus tempus</dd>
+	</dl>
+</div>
+
+<!-- fin orga_bloc -->
+<hr style="clear:both" />
+</div>
+<div id="suite">
+<div id="actu_portail">
+	<h2 class="titre_tete#ID_SECTEUR">LES ACTUALITES</h2>
+	<dl>
+		<dt><a href="#">Mon titre d'actu</a></dt>
+		<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+		<hr class="sepa" />
+		<dt><a href="#">Mon titre d'actu</a></dt>
+		<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+		<hr class="sepa" />
+		<dt><a href="#">Mon titre d'actu</a></dt>
+		<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+		<hr class="sepa" />
+		<dt><a href="#">Mon titre d'actu</a></dt>
+		<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+		<hr class="sepa" />
+		<dt><a href="#">Mon titre d'actu</a></dt>
+		<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+		<hr class="sepa" />
+	</dl>
+</div>
+<div id="outils">
+	<h2 class="titre_tete#ID_SECTEUR">OUTILS & PUBLICATIONS</h2>
+		<dl>
+			<dt><a href="#">Mon titre d'actu</a></dt>
+			<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+			<dt><a href="#">Mon titre d'actu</a></dt>
+			<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+			<dt><a href="#">Mon titre d'actu</a></dt>
+			<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+			<dt><a href="#">Mon titre d'actu</a></dt>
+			<dd><time>26/06/09</time> avec un peu de texte, avec un peu de texte,avec un peu de texte,avec un peu de texte,</dd>
+			
+		</dl>
+</div>	
+
+
+</BOUCLE_contenu_rubrique>
