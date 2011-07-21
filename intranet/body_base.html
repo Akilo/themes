@@ -1,4 +1,3 @@
-[(#SESSION|oui)
 <div id="page">
     <div id="entete">
         <div class="page">
@@ -37,21 +36,3 @@
         <INCLURE{fond=inc-theme-copyleft,env}>
     </div>
 </div>
-]
-[(#SESSION|non)
-<div id="page">
-    <div id="entete">
-        <div class="page">
-            <INCLURE{fond=inclure/entete,env}>
-        </div>
-    </div>
-    <div class="page">
-        <div id="conteneur">
-        #LOGIN_PUBLIC
-        [(#ENV{composition}|=={spip_pass}|oui)<INCLURE{fond=contenu/#ENV{type},env}>]
-        
-        </div>
-    </div>
-            
-</div>
-]

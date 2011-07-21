@@ -4,47 +4,18 @@
 [(#REM) Liens des forums ]
 
 <div class="liste forums">
-	<h2 class="titre_tete">NOUS CONNAITRE</h2>
-	<ul class="liste-items">
-		<li>LE SECOURS CATHOLIQUE
-			<ul>
-				<li>Présentation</li>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-			</ul>
-		</li>
-		<li>NOS POSITIONS
-			<ul>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-			</ul>
-		</li>
-		<li>LE REZO CARITAS
-			<ul>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-				<li>Nos fondements</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-
-
-
-[(#REM) Sur le Web ]
-
-<div class="liste syndic_articles">
-	<h2 class="titre_tete">MOTS CLES</h2>
-	<ul class="liste-items">
-		<li class="item"><a href="#">logement</a></li>
-		<li class="item"><a href="#">logement</a></li>
-		<li class="item"><a href="#">logement</a></li>
-		<li class="item"><a href="#">logement</a></li>
-		<li class="item"><a href="#">logement</a></li>
-		<li class="item"><a href="#">logement</a></li>
-	</ul>
+    <BOUCLE_712(RUBRIQUES){id_rubrique=712}>
+    <h2 class="titre_tete">#TITRE</h2>
+    <ul class="liste-items">
+        <BOUCLE_ss_712(RUBRIQUES){id_parent}>
+        <li>#TITRE
+            <ul>
+                <BOUCLE_art_712(ARTICLES){id_rubrique}{par num titre, titre}>
+                <li><a href="#URL_ARTICLE">#TITRE</a></li>
+                </BOUCLE_art_712>
+            </ul>
+        </li>
+        </BOUCLE_ss_712>
+    </ul>
+    </BOUCLE_712>
 </div>

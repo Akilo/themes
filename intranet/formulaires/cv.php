@@ -34,17 +34,17 @@ function formulaires_cv_verifier_dist(){
     $_FILES ? $_FILES : $GLOBALS['HTTP_POST_FILES'];
     
     //Est ce qu'il y a une pièce jointe ?
-    //if($_FILES['cv']['error'] == UPLOAD_ERR_NO_FILE)
-        //$erreurs['cv'] .= _T("info_obligatoire");
+    if($_FILES['cv']['error'] == UPLOAD_ERR_NO_FILE)
+        $erreurs['cv'] .= _T("info_obligatoire");
 
     //Test de la taille
     if($_FILES['cv']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['cv']['size'] > 2097152)
         $erreurs['cv'] .= "La taille de votre CV excéde la taille autorisée";
 
     //Test des extensions
-    //$fichier = pathinfo($_FILES['cv']['name']);
-    //if (!in_array($fichier['extension'],array_keys($formats))) 
-        //$erreurs['cv'] .= "Le fichier de votre CV n'a pas un format accepté";
+    $fichier = pathinfo($_FILES['cv']['name']);
+    if (!in_array($fichier['extension'],array_keys($formats))) 
+        $erreurs['cv'] .= "Le fichier de votre CV n'a pas un format accepté";
 
     if (!$sujet=_request('sujet'))
         $erreurs['sujet'] = _T("info_obligatoire");
@@ -58,14 +58,19 @@ function formulaires_cv_traiter_dist(){
     $formats = $GLOBALS['formats'];
 
     $envoyer_mail = charger_fonction('envoyer_mail','inc');
-    $email_to = $GLOBALS['meta']['email_webmaster'];
+    $email_to = 'kleray@gmail.com';
     $email_from = _request('email');
     $sujet = _request('sujet');
     $texte = _request('texte');
     $nom= _request('nom');
     $prenom= _request('prenom');
+    $soc= _request('societe');
+    $adresse= _request('adresse');
+    $cp= _request('cp');
+    $ville= _request('ville');
     $adres= _request('email');
     $tel= _request('tel');
+    $sujet= _request('sujet');
     
     //Déclarer un mail en partie multiple
     $boundary .= "piecejointe";
@@ -75,8 +80,9 @@ function formulaires_cv_traiter_dist(){
     //Le corps de mail
     $message_mail ="--". $boundary ."\n";
     $message_mail .="Content-Type: text/plain; charset=ISO-8859-1\r\n\n";
-    $message_mail.= "Un message a été posté depuis le site par ".$prenom." ".$nom." \n";
+    $message_mail.= "Un cv a été posté depuis le site par ".$prenom." ".$nom." \n";
     $message_mail.= "E-mail: ".$email_from."\n";
+    $message_mail.= "Adresse: ".$adresse." ".$cp." ".$ville." \n";
     $message_mail.= "Téléphone: ".$tel." \n";
     $message_mail.= "Sujet: ".$sujet." \n";
     $message_mail.= "Message « ".$texte." »\n\n";
@@ -104,5 +110,5 @@ function formulaires_cv_traiter_dist(){
 
     $envoyer_mail($email_to,$sujet,$message_mail,$email_from,$headers);
 
-    return array('message_ok'=>'Merci pour votre message, il a bien &eacute;t&eacute; pris en compte. Nous vous contacterons prochainement.');}
+    return array('message_ok'=>'Merci pour votre message, il a bien été pris en compte. Nous vous contacterons prochainement.');}
 ?>
