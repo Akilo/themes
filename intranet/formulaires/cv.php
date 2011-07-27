@@ -34,17 +34,17 @@ function formulaires_cv_verifier_dist(){
     $_FILES ? $_FILES : $GLOBALS['HTTP_POST_FILES'];
     
     //Est ce qu'il y a une pièce jointe ?
-    if($_FILES['cv']['error'] == UPLOAD_ERR_NO_FILE)
-        $erreurs['cv'] .= _T("info_obligatoire");
+    if($_FILES['fichier']['error'] == UPLOAD_ERR_NO_FILE)
+        $erreurs['fichier'] .= _T("info_obligatoire");
 
     //Test de la taille
-    if($_FILES['cv']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['cv']['size'] > 2097152)
-        $erreurs['cv'] .= "La taille de votre CV excéde la taille autorisée";
+    if($_FILES['fichier']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['fichier']['size'] > 2097152)
+        $erreurs['fichier'] .= "La taille de votre CV excéde la taille autorisée";
 
     //Test des extensions
-    $fichier = pathinfo($_FILES['cv']['name']);
+    $fichier = pathinfo($_FILES['fichier']['name']);
     if (!in_array($fichier['extension'],array_keys($formats))) 
-        $erreurs['cv'] .= "Le fichier de votre CV n'a pas un format accepté";
+        $erreurs['fichier'] .= "Le fichier de votre CV n'a pas un format accepté";
 
     if (!$sujet=_request('sujet'))
         $erreurs['sujet'] = _T("info_obligatoire");
