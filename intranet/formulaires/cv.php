@@ -8,12 +8,12 @@ $GLOBALS['formats'] = array(
     'log' => 'text/plain'   
 );
 
-function formulaires_cv_charger_dist(){
+function formulaires_cv_charger_dist($id_article =null ){
     $valeurs = array('email'=>'','texte'=>'','nom'=>'','prenom'=>'','sujet'=>'','adresse'=>'','cp'=>'','ville'=>'','tel'=>'' );
     return $valeurs;
 }
 
-function formulaires_cv_verifier_dist(){
+function formulaires_cv_verifier_dist($id_article = null){
     $formats = $GLOBALS['formats'];
     $erreurs = array();
     
@@ -54,7 +54,7 @@ function formulaires_cv_verifier_dist(){
     return $erreurs;
 }
 
-function formulaires_cv_traiter_dist(){
+function formulaires_cv_traiter_dist($id_article = null){
     $formats = $GLOBALS['formats'];
 
     $envoyer_mail = charger_fonction('envoyer_mail','inc');
@@ -71,7 +71,11 @@ function formulaires_cv_traiter_dist(){
     $adres= _request('email');
     $tel= _request('tel');
     $sujet= _request('sujet');
-    
+
+
+    if ($id_article) {
+        $article = "en référence à l'article : " . generer_url_public("article","id_article=".$id_article) . "\n";
+    }
     //Déclarer un mail en partie multiple
     $boundary .= "piecejointe";
     $headers .= "MIME-Version: 1.0\r\n";
@@ -81,6 +85,7 @@ function formulaires_cv_traiter_dist(){
     $message_mail ="--".$boundary."\n";
     $message_mail .="Content-Type: text/plain; charset=ISO-8859-1\r\n\n";
     $message_mail.= "Un cv a été posté depuis le site par ".$prenom." ".$nom." \n";
+    $message_mail.= $article;
     $message_mail.= "E-mail: ".$email_from."\n";
     $message_mail.= "Adresse: ".$adresse." ".$cp." ".$ville." \n";
     $message_mail.= "Téléphone: ".$tel." \n";
