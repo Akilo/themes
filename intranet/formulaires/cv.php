@@ -75,10 +75,10 @@ function formulaires_cv_traiter_dist(){
     //Déclarer un mail en partie multiple
     $boundary .= "piecejointe";
     $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+    $headers .= "Content-Type: multipart/mixed; boundary=\"".$boundary."\"\r\n";
     
     //Le corps de mail
-    $message_mail ="--". $boundary ."\n";
+    $message_mail ="--".$boundary."\n";
     $message_mail .="Content-Type: text/plain; charset=ISO-8859-1\r\n\n";
     $message_mail.= "Un cv a été posté depuis le site par ".$prenom." ".$nom." \n";
     $message_mail.= "E-mail: ".$email_from."\n";
@@ -99,7 +99,7 @@ function formulaires_cv_traiter_dist(){
     /* On utilise aussi chunk_split() qui organisera comme il faut l'encodage fait en base 64 pour se conformer aux standards */
     $fichier=chunk_split( base64_encode($fichier) );
     
-    $message_mail.= "--" .$boundary. "\n";
+    $message_mail.= "--".$boundary."\n";
     $message_mail.= "Content-Type: ".$formats[$extension]."; name=\"".$_FILES['fichier']['name']."\"\n";
     $message_mail.= "Content-Transfer-Encoding: base64\n";
     $message_mail.= "Content-Disposition: attachment; filename=\"".$_FILES['fichier']['name']."\"\r\n\n";
