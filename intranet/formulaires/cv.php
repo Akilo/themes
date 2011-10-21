@@ -75,6 +75,15 @@ function formulaires_cv_traiter_dist($id_article = null){
 
     if ($id_article) {
         $article = "en référence à l'article : " . generer_url_public("article","id_article=".$id_article) . "\n";
+        $res =sql_select(
+            'email',
+            array('spip_auteurs, spip_auteurs_articles'),
+            array(
+                'spip_auteurs_articles.id_article = '.$id_article,
+                'spip_auteurs_articles.id_auteur = spip_auteurs.id_auteur'
+            )
+        );
+        $auteurs = sql_fetch_all($res);
     }
     //Déclarer un mail en partie multiple
     $boundary .= "piecejointe";
@@ -114,6 +123,9 @@ function formulaires_cv_traiter_dist($id_article = null){
     $message_mail.= "--".$boundary."--";
 
     $envoyer_mail($email_to,$sujet,$message_mail,$email_from,$headers);
-
+    foreach($auteurs as $row) {
+        if (!empty($row['email']))
+            $envoyer_mail($row['email'],$sujet,$message_mail,$email_from,$headers);
+    }
     return array('message_ok'=>'Merci pour votre message, il a bien été pris en compte. Nous vous contacterons prochainement.');}
 ?>
