@@ -8,12 +8,12 @@ $GLOBALS['formats'] = array(
     'log' => 'text/plain'   
 );
 
-function formulaires_cv_charger_dist(){
+function formulaires_cv_charger_dist($id_article =null ){
     $valeurs = array('email'=>'','texte'=>'','nom'=>'','prenom'=>'','sujet'=>'','adresse'=>'','cp'=>'','ville'=>'','tel'=>'' );
     return $valeurs;
 }
 
-function formulaires_cv_verifier_dist(){
+function formulaires_cv_verifier_dist($id_article = null){
     $formats = $GLOBALS['formats'];
     $erreurs = array();
     
@@ -34,17 +34,17 @@ function formulaires_cv_verifier_dist(){
     $_FILES ? $_FILES : $GLOBALS['HTTP_POST_FILES'];
     
     //Est ce qu'il y a une pièce jointe ?
-    if($_FILES['cv']['error'] == UPLOAD_ERR_NO_FILE)
-        $erreurs['cv'] .= _T("info_obligatoire");
+    if($_FILES['fichier']['error'] == UPLOAD_ERR_NO_FILE)
+        $erreurs['fichier'] .= _T("info_obligatoire");
 
     //Test de la taille
-    if($_FILES['cv']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['cv']['size'] > 2097152)
-        $erreurs['cv'] .= "La taille de votre CV excéde la taille autorisée";
+    if($_FILES['fichier']['error'] == UPLOAD_ERR_FORM_SIZE || $_FILES['fichier']['size'] > 2097152)
+        $erreurs['fichier'] .= "La taille de votre CV excéde la taille autorisée";
 
     //Test des extensions
-    $fichier = pathinfo($_FILES['cv']['name']);
+    $fichier = pathinfo($_FILES['fichier']['name']);
     if (!in_array($fichier['extension'],array_keys($formats))) 
-        $erreurs['cv'] .= "Le fichier de votre CV n'a pas un format accepté";
+        $erreurs['fichier'] .= "Le fichier de votre CV n'a pas un format accepté";
 
     if (!$sujet=_request('sujet'))
         $erreurs['sujet'] = _T("info_obligatoire");
@@ -54,7 +54,7 @@ function formulaires_cv_verifier_dist(){
     return $erreurs;
 }
 
-function formulaires_cv_traiter_dist(){
+function formulaires_cv_traiter_dist($id_article = null){
     $formats = $GLOBALS['formats'];
 
     $envoyer_mail = charger_fonction('envoyer_mail','inc');
@@ -71,16 +71,21 @@ function formulaires_cv_traiter_dist(){
     $adres= _request('email');
     $tel= _request('tel');
     $sujet= _request('sujet');
-    
+
+
+    if ($id_article) {
+        $article = "en référence à l'article : " . generer_url_public("article","id_article=".$id_article) . "\n";
+    }
     //Déclarer un mail en partie multiple
     $boundary .= "piecejointe";
     $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+    $headers .= "Content-Type: multipart/mixed; boundary=\"".$boundary."\"\r\n";
     
     //Le corps de mail
-    $message_mail ="--". $boundary ."\n";
+    $message_mail ="--".$boundary."\n";
     $message_mail .="Content-Type: text/plain; charset=ISO-8859-1\r\n\n";
     $message_mail.= "Un cv a été posté depuis le site par ".$prenom." ".$nom." \n";
+    $message_mail.= $article;
     $message_mail.= "E-mail: ".$email_from."\n";
     $message_mail.= "Adresse: ".$adresse." ".$cp." ".$ville." \n";
     $message_mail.= "Téléphone: ".$tel." \n";
@@ -91,18 +96,18 @@ function formulaires_cv_traiter_dist(){
     $_FILES ? $_FILES : $GLOBALS['HTTP_POST_FILES'];
 
     //Connaitre l'extension
-    $fichier = pathinfo($_FILES['cv']['name']);
+    $fichier = pathinfo($_FILES['fichier']['name']);
     $extension = $fichier['extension'];
 
     //Formater le fichier pour le mail
-    $fichier=file_get_contents($_FILES['cv']['tmp_name']);
+    $fichier=file_get_contents($_FILES['fichier']['tmp_name']);
     /* On utilise aussi chunk_split() qui organisera comme il faut l'encodage fait en base 64 pour se conformer aux standards */
     $fichier=chunk_split( base64_encode($fichier) );
     
-    $message_mail.= "--" .$boundary. "\n";
-    $message_mail.= "Content-Type: ".$formats[$extension]."; name=\"".$_FILES['cv']['name']."\"\n";
+    $message_mail.= "--".$boundary."\n";
+    $message_mail.= "Content-Type: ".$formats[$extension]."; name=\"".$_FILES['fichier']['name']."\"\n";
     $message_mail.= "Content-Transfer-Encoding: base64\n";
-    $message_mail.= "Content-Disposition: attachment; filename=\"".$_FILES['cv']['name']."\"\r\n\n";
+    $message_mail.= "Content-Disposition: attachment; filename=\"".$_FILES['fichier']['name']."\"\r\n\n";
     $message_mail.= $fichier;
 
     //Cloture du mail

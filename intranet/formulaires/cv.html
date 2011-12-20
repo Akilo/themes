@@ -49,10 +49,10 @@
 				<textarea name="texte" id="texte" rows="8" cols="58" >#ENV{texte}</textarea>				
 			</li>
 			<li class="joindre_fichier">
-				<label for="cv">Joindre votre fichier :</label>
+				<label for="fichier">Joindre votre fichier :</label>
 				<input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
 				<input type="file" name="fichier" />
-				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{cv})</span>]
+				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{fichier})</span>]
 				<small>Fichiers acceptés .doc, .pdf, .txt, taille maximum 2 Mo.</small> 
 			</li>
 		</ul>

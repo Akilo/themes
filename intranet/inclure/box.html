@@ -7,7 +7,7 @@
                     <div id="box2">
                         <h2 class="bobox couleur_7">Articles les plus lus</h2>
                         <ul>
-                            <BOUCLE_hitparade(ARTICLES){par popularite}{inverse}{0,8}>
+                            <BOUCLE_hitparade(ARTICLES){par popularite}{inverse}{0,6}>
                             <li>[<time>(#DATE|affdate_jourcourt)</time> &ndash; ]<a href="#URL_ARTICLE">#TITRE</a></li>
                             </BOUCLE_hitparade>
                         </ul>
@@ -23,10 +23,12 @@
                     <div id="box4">
                         <h2 class="bobox couleur_7">Aide</h2>
                         <ul>
-                            <li>Nullam commodo feugiat aliquam</li>
-                            <li>Nullam commodo feugiat aliquam</li>
-                            <li>Nullam commodo feugiat aliquam</li>
-                            <li>Nullam commodo feugiat aliquam</li>
-                            <li>Nullam commodo feugiat aliquam</li>
+                            <BOUCLE_formation(AUTEURS){id_auteur=#SESSION{id_auteur}}{statut=0minirezo}>
+                                <li><a href="#URL_ARTICLE{1208}">doc pour la formation</a></li>
+                            </BOUCLE_formation>
+                            
+                            <BOUCLE_aide(ARTICLES){id_rubrique=845}{par num titre}{0,5}>
+                            <li><a href="#URL_ARTICLE">#TITRE</a></li>
+                            </BOUCLE_aide>
                         </ul>
                     </div>

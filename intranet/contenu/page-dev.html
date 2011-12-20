@@ -1,4 +1,13 @@
-<BOUCLE_a(ARTICLES){id_article=875}>
+#SESSION{id_auteur}
+<BOUCLE_csv(DATA){source csv, citations.csv}{par hasard} {0,1}>
+#VALEUR{0}
+</BOUCLE_csv>
+<br />
+<BOUCLE_(AUTEURS){id_auteur=1}>[(#DATE|<{2012-07-04}oui)bip]</BOUCLE_><br />
+[(#KRISTOF)[(#VAL{spip_articles}|sql_showtable|table_valeur{field}|foreach)]]
+
+<BOUCLE_xx(ARTICLES){id_article=959}>
 #TEXTE
-#FORMULAIRE_CV
-</BOUCLE_a>
+#FORMULAIRE_CORVART{article,#ID_ARTICLE}
+</BOUCLE_xx>
+

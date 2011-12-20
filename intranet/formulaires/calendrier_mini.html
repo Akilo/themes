@@ -44,7 +44,7 @@
             #SET{'borne_fin_mois', (#ENV{#ENV{var_date},#ENV{date}}|affdate{'Y-m'}|Agenda_moisdecal{1,'Y-m-d'})}
             <!-- le debut de mois est #GET{'borne_debut_mois'}, le debut du suivant est #GET{'borne_fin_mois'} -->
             <BOUCLE_calendrier(EVENEMENTS)
-            {id_article?}{id_mot?}
+            {id_article=49}
             {date_debut < #GET{'borne_fin_mois'}} 
             {date_fin >= #GET{'borne_debut_mois'}}>[
             (#DATE_DEBUT|Agenda_memo_full{#DATE_FIN,[(#TITRE|addslashes)],

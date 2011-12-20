@@ -4,35 +4,54 @@
     On fait un plan, et, quand on avance vers une rubrique,
     on l'affiche si son parent est expose ou est la racine du site. ]
 
-<nav class="menu rubriques">
-    
-    
-    <ul class="menu-liste">
-    
-        <li class="menu-entree couleur_1" id="menu1" onclick="afficheMenu(this)"><a href="#">Délégations</a>
-            <ul id="sousmenu1" style="display: none;">
-                <BOUCLE_menu_deleg(RUBRIQUES){id_parent=1}{par titre}>
-                    <li class="sousmenu"><a href="#URL_RUBRIQUE">[(#TITRE|strtolower|ucfirst)]</a></li>
-                </BOUCLE_menu_deleg>
-            </ul>
-        </li>
-        <li class="menu-entree couleur_2" id="menu2" onclick="afficheMenu(this)"><a href="#">Régions</a>
-            <ul id="sousmenu2" style="display: none;">
-                <BOUCLE_menu_region(RUBRIQUES){id_parent=113}{par titre}>
-                <li class="sousmenu"><a href="#URL_RUBRIQUE">[(#TITRE|strtolower|ucfirst)]</a></li>
-                </BOUCLE_menu_region>
-            </ul>
-        </li>
-        <li class="menu-entree couleur_3" id="menu3" onclick="afficheMenu(this)"><a href="#">Directions</a>
-            <ul id="sousmenu3" style="display: none;">
-                <BOUCLE_menu_direction(RUBRIQUES){id_parent=104}{par titre}>
-                <li class="sousmenu"><a href="#URL_RUBRIQUE">[(#TITRE|strtolower|ucfirst)]</a></li>
-                </BOUCLE_menu_direction>
-            </ul>
-        </li>
-        <li class="menu-entree couleur_4"><a href="#">Antennes</a></li>
-        <li class="menu-entree couleur_5"><a href="#">Mes groupes de travail</a></li>
-        <li class="menu-entree couleur_6"><a href="#">Annuaire</a></li>
+<div class="menu">
+<div class="couleur_1">
+<h3>D&eacute;l&eacute;gations</h3>
+<p><BOUCLE_menu_deleg(RUBRIQUES){id_parent=1}{par titre}>
+    <a href="#URL_RUBRIQUE">[(#TITRE|strtolower|ucfirst)]</a>
+</BOUCLE_menu_deleg>
+</p>
+</div>
 
-    </ul>
-</nav>
+<div class="couleur_2">
+<h3>R&eacute;gions</h3>
+<p><BOUCLE_menu_region(RUBRIQUES){id_parent=113}{par titre}>
+    <a href="#URL_RUBRIQUE">[(#TITRE|strtolower|ucfirst)]</a>
+</BOUCLE_menu_region>
+</p>
+</div>
+
+<div class="couleur_3">
+<h3>Directions</h3>
+<p>
+<BOUCLE_menu_direction(RUBRIQUES){id_parent=104}{par titre}>
+    <a href="#URL_RUBRIQUE">[(#TITRE|strtolower|ucfirst)]</a>
+</BOUCLE_menu_direction>
+</p>
+</div>
+
+<div class="couleur_4">
+<h3>Antennes</h3>
+<p> 
+<BOUCLE_menu_antenne(RUBRIQUES){id_parent=746}>
+    <a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+</BOUCLE_menu_antenne>
+</p>
+</div>
+<div class="couleur_5">
+<h3>Mes groupes</h3>
+</div>
+
+<div class="couleur_6">
+<h3>Annuaire</h3>
+<BOUCLE_annuaire(ARTICLES){id_article=958}>
+    <p>
+    <BOUCLE_documents_joints(DOCUMENTS) {id_article}>
+    <a href="#URL_DOCUMENT">#TITRE</a>
+    </BOUCLE_documents_joints>
+    </p>
+</BOUCLE_annuaire>
+<p><a href="page.html">Page et bla bla ile de france</a><a href="page.html"> ile de france</a><a href="page.html">Page et bla bla bla bla ile de france</a><a href="page.html">Page et bla bla ile de france</a><a href="page.html">Page et bla bla ile de france</a><a href="page.html">Page et bla bla ile de france</a><a href="page.html">Page et bla bla ile de france</a><a href="page.html">Page et bla bla ile de france</a><a href="page.html">Page et bla bla ile de france</a></p>
+</div>
+
+</div>

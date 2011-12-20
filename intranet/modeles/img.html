@@ -21,7 +21,7 @@
 
 ][(#GET{image}|oui)
 <span class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});[ width:(#LARGEUR)px;]']>
-[<a href="(#ENV{lien})"[ class="(#ENV{lien_class})"]>]<img src='#URL_DOCUMENT'[ width="(#LARGEUR)"][ height="(#HAUTEUR)"] alt="[(#TITRE|texte_backend)]"[ title="(#TITRE|texte_backend)"] /><span class="description">#DESCRIPTIF</span>[(#ENV{lien}|?{</a>})]</span>
+[<a href="(#ENV{lien})"[ class="(#ENV{lien_class})"]>]<img src='#URL_DOCUMENT'[ width="(#LARGEUR)"][ height="(#HAUTEUR)"] alt="[(#TITRE|texte_backend)]"[ title="(#TITRE|texte_backend)"] /><br />[<span class="description">(#DESCRIPTIF|couper{500})</span>][(#ENV{lien}|?{</a>})]</span>
 ][
 
     (#REM) sinon logo document + lien + alt + title etc

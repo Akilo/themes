@@ -1,3 +1,13 @@
+<!--<div class="liste forums">
+    <h2 class="titre_tete">OFFRES D'EMPLOI</h2>
+    <ul class="liste-items">
+        <li><a href="#" title="16 septembre 2011">on recherche (we need you)</a></li>
+        <li><a href="#" title="16 septembre 2011">on recherche (we need you)</a></li>
+        <li><a href="#" title="16 septembre 2011">on recherche (we need you)</a></li>
+        <li><a href="#" title="16 septembre 2011">on recherche (we need you)</a></li>
+        <li><a href="#" title="16 septembre 2011">on recherche (we need you)</a></li>
+    </ul>
+</div>-->
 <BOUCLE_extra_rubrique(RUBRIQUES){id_rubrique}>
     [(#REM) Menu de navigation themes ]
     <B_extra_theme>
@@ -74,30 +84,14 @@
     </div>
 </BOUCLE_extra_rubrique>
 <div class="liste mots ">
-<h2 class="h2">Espace RH</h2>
-<ul>
-    <li><BOUCLE_metiers_competence(RUBRIQUES){id_rubrique=502}>#TITRE
+<BOUCLE_504(RUBRIQUES){id_rubrique=504}>
+<h2 class="h2">#TITRE</h2>
+
         <ul>
-            <BOUCLE_ss_metiers_competence(RUBRIQUES){id_parent}>
+            <BOUCLE_ss_504(RUBRIQUES){id_parent}{par num titre, titre}>
             <li><a href="#URL_RUBRIQUE">#TITRE</a>
                 <ul>
-                <BOUCLE_art_ss_502(ARTICLES){id_rubrique}>
-                    <li><a href="#URL_ARTICLE">#TITRE</a></li>
-                </BOUCLE_art_ss_502>
-                </ul>
-            </li>
-            </BOUCLE_ss_metiers_competence>
-        </ul>
-        </BOUCLE_metiers_competence>
-    </li>
-</ul>
-<ul>
-    <li><BOUCLE_504(RUBRIQUES){id_rubrique=504}>#TITRE
-        <ul>
-            <BOUCLE_ss_504(RUBRIQUES){id_parent}>
-            <li><a href="#URL_RUBRIQUE">#TITRE</a>
-                <ul>
-                <BOUCLE_art_ss_504(ARTICLES){id_rubrique}>
+                <BOUCLE_art_ss_504(ARTICLES){id_rubrique}{par num titre, titre}>
                     <li><a href="#URL_ARTICLE">#TITRE</a></li>
                 </BOUCLE_art_ss_504>
                 </ul>
@@ -105,6 +99,5 @@
             </BOUCLE_ss_504>
         </ul>
     </BOUCLE_504>    
-    </li>
-</ul>
+    
 </div>

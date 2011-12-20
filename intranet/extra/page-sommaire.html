@@ -8,21 +8,32 @@
     <ul class="liste-items">
         <B_evenements>
             #ANCRE_PAGINATION
-            <BOUCLE_evenements(EVENEMENTS){id_article=49}{age_fin<0}{pagination 5}>
-            <li><time>[(#DATE|affdate)]</time>
-            [<a href="#URL_EVENEMENT" class='mediabox'>(#DESCRIPTIF|couper{65})</a>]</li>
+            <BOUCLE_evenements(EVENEMENTS){id_article=49}{par date}{age_fin<0}{pagination 5}>
+            <li><time>[(#DATE_DEBUT|affdate)]</time>
+            [<a href="#URL_EVENEMENT" class='mediabox'>(#TITRE|couper{65})</a>]</li>
             </BOUCLE_evenements>
             [<p class="pagination">(#PAGINATION)</p>]
             </B_evenements>
     </ul>
 </div>
-
+<div class="liste forums">
+    <h2 class="titre_tete">OFFRES D'EMPLOI</h2>
+    <ul class="liste-items">
+    <BOUCLE_rub_emploi(RUBRIQUES){id_rubrique=778}>
+        <BOUCLE_ss_rub_emploi(RUBRIQUES){id_parent}>
+            <BOUCLE_emploi(ARTICLES){id_rubrique}{!par date}>
+            [(#SESSION{id_auteur}|=={1}|oui)<li><a href="#URL_ARTICLE" title="[(#DATE|date_relative)]">#TITRE</a></li>]
+            </BOUCLE_emploi>
+        </BOUCLE_ss_rub_emploi>
+    </BOUCLE_rub_emploi>
+    </ul>
+</div>
 
 
 [(#REM) Sur le Web ]
 
   <div class="liste mots">
       <h2 class="titre_tete">MOTS CLES</h2>
-      [(#MODELE{nuage_popularite}{notid=1})]
+      [(#MODELE{nuage_popularite}{notid=1|5})]
   </div>
 

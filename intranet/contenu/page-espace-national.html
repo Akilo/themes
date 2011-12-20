@@ -13,8 +13,8 @@
         <dl>
             <B_evenements>
             #ANCRE_PAGINATION
-            <BOUCLE_evenements(EVENEMENTS){id_article=49}{age_fin<0}{pagination 5}>
-            <dt><time>[(#DATE|affdate)]</time></dt>
+            <BOUCLE_evenements(EVENEMENTS){id_article=49}{par date}{age_fin<0}{pagination 5}>
+            <dt><time>[(#DATE_DEBUT|affdate)]</time><a href="#URL_EVENEMENT" class='mediabox'> #TITRE</a></dt>
             <dd>[(#DESCRIPTIF|couper{65})]</dd>
             </BOUCLE_evenements>
             [<p class="pagination">(#PAGINATION)</p>]
@@ -32,7 +32,7 @@
         <ul><BOUCLE_mosaique(ARTICLES){id_rubrique}{!par date}{0,2}>
             <li><a href="#URL_ARTICLE">#TITRE</a></li>
             </BOUCLE_mosaique>
-            <li><a href="#URL_RUBRIQUE">Tout les n°</a></li>
+            <!--<li><a href="#URL_RUBRIQUE">Tous les num&eacute;ros</a></li>-->
         </ul>
         </BOUCLE_717>
         <BOUCLE_718(RUBRIQUES){id_rubrique=718}>
@@ -40,7 +40,7 @@
         <ul><BOUCLE_message(ARTICLES){id_rubrique}{!par date}{0,2}>
             <li><a href="#URL_ARTICLE">#TITRE</a></li>
             </BOUCLE_message>
-            <li><a href="#URL_RUBRIQUE">Tout les n°</a></li>
+            <!--<li><a href="#URL_RUBRIQUE">Tous les num&eacute;ros</a></li>-->
         </ul>
         </BOUCLE_718>
     </div>
@@ -50,7 +50,7 @@
         <ul><BOUCLE_acti(ARTICLES){id_rubrique}{!par date}{0,1}>
             <li><a href="#URL_ARTICLE">#TITRE</a></li>
             </BOUCLE_acti>
-            <li><a href="#URL_RUBRIQUE">Tout rapports</a></li>
+            <!--<li><a href="#URL_RUBRIQUE">Tous le rapports</a></li>-->
         </ul>
         </BOUCLE_719>
         <BOUCLE_720(RUBRIQUES){id_rubrique=720}>
@@ -58,7 +58,7 @@
         <ul><BOUCLE_actip(ARTICLES){id_rubrique}{!par date}{0,1}>
             <li><a href="#URL_ARTICLE">#TITRE</a></li>
             </BOUCLE_actip>
-            <li><a href="#URL_RUBRIQUE">Tout rapports</a></li>
+            <!--<li><a href="#URL_RUBRIQUE">Tous les rapports</a></li>-->
         </ul>
         </BOUCLE_720>
     </div>
@@ -67,28 +67,22 @@
 <div id="actu_nat">
     <BOUCLE_721(RUBRIQUES){id_rubrique=721}>
     <h2 class="titre_tete">#TITRE</h2>
+    <B_actu_nat>
+    #ANCRE_PAGINATION
     <dl>
-        <BOUCLE_actu_nat(ARTICLES){id_rubrique}>
+        <BOUCLE_actu_nat(ARTICLES){id_rubrique}{!par date}{pagination 15}>
         <dt><a href="#URL_ARTICLE">#TITRE</a></dt>
-        <dd><time>[(#DATE|date_relative)]</time>[(#TEXTE|couper{85})]</dd>
+        <dd><time>[(#DATE|date_relative)]</time>[(#TEXTE|couper{200})]</dd>
         <hr class="sepa" />
         </BOUCLE_actu_nat>
     </dl>
+    [<p class="pagination">(#PAGINATION)</p>]
+    </B_actu_nat>
     </BOUCLE_721>
 </div>
-<div id="actu_deleg">
-    <BOUCLE_722(RUBRIQUES){id_rubrique=722}>
-    <h2 class="titre_tete">#TITRE</h2>
-    <dl>
-        <BOUCLE_actu_deleg(ARTICLES){id_rubrique}>
-        <dt><a href="#URL_ARTICLE">#TITRE</a></dt>
-        <dd><time>[(#DATE|date_relative)]</time>[(#TEXTE|couper{85})]</dd>
-        <hr class="sepa" />
-        </BOUCLE_actu_deleg>
-    </dl>
-    </BOUCLE_722>
+
 </div>
-</div>
+<hr style="clear:both" />
 <div id="suite">
     
 
@@ -99,12 +93,12 @@
         <B_even_une>
         #ANCRE_PAGINATION
         <BOUCLE_even_une(ARTICLES){id_rubrique}{pagination 5}>
-        <li><time>[(#DATE|date_relative)]</time>#TITRE</li>
+        <li><time>[(#DATE|date_relative)]</time><a href="#URL_ARTICLE"> #TITRE</a></li>
         </BOUCLE_even_une>
         [<p class="pagination">(#PAGINATION)</p>]
         </B_even_une>
     </ul>
-    <a class="right" href="#URL_RUBRIQUE">Autres actus</a>
+    <a class="right" href="#URL_RUBRIQUE">Autres</a>
     </BOUCLE_112>
 </div>
 <div id="dossier_une">
@@ -113,13 +107,13 @@
     <ul>
         <B_even_unep>
         #ANCRE_PAGINATION
-        <BOUCLE_even_unep(ARTICLES){id_rubrique}{pagination 5}>
-        <li><time>[(#DATE|date_relative)]</time>#TITRE</li>
+        <BOUCLE_even_unep(RUBRIQUES){id_parent}{pagination 5}>
+        <li><time>[(#DATE|date_relative)]</time><a href="#URL_RUBRIQUE"> #TITRE</a></li>
         </BOUCLE_even_unep>
         [<p class="pagination">(#PAGINATION)</p>]
         </B_even_unep>
     </ul>
-    <a class="right" href="#URL_RUBRIQUE">Autres actus</a>
+    <a class="right" href="#URL_RUBRIQUE">Autres dossiers</a>
     </BOUCLE_313>
 </div>
 </div>
